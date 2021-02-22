@@ -3,6 +3,7 @@ import time
 import json
 from uuid import uuid4
 from . import expeptions
+from .models.user import User
 
 
 def uuid():
@@ -76,7 +77,11 @@ class Client:
         data = response['data']
 
         if 'error' in data:
-            raise expeptions.MicroServiceExpeption(str(data['error']))
+            error = data['data']
+            if error == 'invalid_input_data':
+                raise expeptions.InvalidInputData
+            else:
+                raise expeptions.MicroServiceExpeption(str(data['error']))
         return data
 
     def register(self, username: str, password: str) -> str:
@@ -86,3 +91,6 @@ class Client:
             "password": password
         })
         return resp['token']
+
+    def getUser(self) -> User:
+        return User(self)

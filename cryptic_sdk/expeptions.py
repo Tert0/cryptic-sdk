@@ -29,3 +29,7 @@ class MicroServiceExpeption(Exception):
 
 class InvalidServerResponse(Exception):
     """Invalid Server Response"""
+
+
+class InvalidInputData(Exception):
+    """Invalid Input Date MS Error"""

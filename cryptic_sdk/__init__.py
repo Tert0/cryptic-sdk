@@ -1,5 +1,7 @@
-from .client import *
+from .client import Client
 from .expeptions import *
+from .models.user import User
+from .models.device import Device
 
 __all__ = [
     'Client',
@@ -8,5 +10,7 @@ __all__ = [
     'PermissionsDenied',
     'InvalidToken',
     'InvalidPassword',
-    'UsernameAlreadyExists'
+    'UsernameAlreadyExists',
+    'User',
+    'Device'
 ]
