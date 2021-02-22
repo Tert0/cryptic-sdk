@@ -2,7 +2,7 @@ import websocket
 import time
 import json
 from uuid import uuid4
-import expeptions
+from . import expeptions
 
 
 def uuid():
