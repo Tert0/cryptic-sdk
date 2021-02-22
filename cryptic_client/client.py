@@ -77,7 +77,11 @@ class Client:
         data = response['data']
 
         if 'error' in data:
-            raise expeptions.MicroServiceExpeption(str(data['error']))
+            error = data['data']
+            if error == 'invalid_input_data':
+                raise expeptions.InvalidInputData
+            else:
+                raise expeptions.MicroServiceExpeption(str(data['error']))
         return data
 
     def register(self, username: str, password: str) -> str:

@@ -1,5 +1,6 @@
 from .transaction import Transaction
 
+
 class Wallet(object):
 
     def __init__(self, client, wallet_id: str, wallet_key: str):
@@ -20,3 +21,12 @@ class Wallet(object):
         self.transactions = [Transaction(self.client, transaction) for transaction in self.transactions]
         self.dict = json
         self.dict['transactions'] = [transaction.dict for transaction in self.transactions]
+
+    def pay(self, destination_uuid: str, amount: float, usage=''):
+        self.client.ms('currency', ['send'], {
+            'source_uuid': self.source_uuid,
+            'key': self.key,
+            'send_amount': amount,
+            'destination_uuid': destination_uuid,
+            'usage': usage
+        })
