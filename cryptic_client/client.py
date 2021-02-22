@@ -3,6 +3,8 @@ import time
 import json
 from uuid import uuid4
 from . import expeptions
+from .models.user import User
+from .models.device import Device
 
 
 def uuid():
@@ -86,3 +88,13 @@ class Client:
             "password": password
         })
         return resp['token']
+
+    def getUser(self) -> User:
+        return User(self.request({"action": "info"}))
+
+    def getDevices(self) -> list[Device]:
+        raw_devices = self.ms('device', ['device', 'all'], {})['devices']
+        devices = []
+        for device in raw_devices:
+            devices.append(Device(device))
+        return devices
