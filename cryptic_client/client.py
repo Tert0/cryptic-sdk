@@ -89,4 +89,4 @@ class Client:
         return resp['token']
 
     def getUser(self) -> User:
-        return User(self, self.request({"action": "info"}))
+        return User(self)
