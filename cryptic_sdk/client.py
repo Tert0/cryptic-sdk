@@ -11,6 +11,14 @@ def uuid():
 
 
 class Client:
+    """
+    Cryptic Client
+
+    Parameters
+    ----------
+    uri : str
+        Websocket URI of the Cryptic Backend
+    """
     def __init__(self, uri: str):
         self.uri = uri
         self.websocket = websocket.create_connection(self.uri)
@@ -19,6 +27,34 @@ class Client:
         self.logged_in = False
 
     def request(self, data: dict) -> dict:
+        """
+        Make a Request to the Backend
+
+        Parameters
+        ----------
+        data : dict
+            Data for the Backend
+
+        Raises
+        ------
+        cryptic_client.Timeout
+            Raises :py:class:cryptic_client.Timeout if the connection Timeouts
+        cryptic_client.MissingParameters
+            Raises :py:class:`cryptic_client.MissingParameters` if not all Parameters are passed to the Backend
+        cryptic_client.PermissionsDenied
+            Raises :py:class:`cryptic_client.PermissionsDenied` if you dont have the Permissions to do that
+        cryptic_client.InvalidToken
+            Raises :py:class:`cryptic_client.InvalidToken` if the Session Token is Invalid
+        cryptic_client.InvalidPassword
+            Raises :py:class:`cryptic_client.InvalidPassword` if the Password Token is Invalid
+        cryptic_client.UsernameAlreadyExists
+            Raises :py:class:`cryptic_client.UsernameAlreadyExists` if the Username Alredy exists
+
+        Returns
+        -------
+        response : dict
+            Repsonse from the Backend
+        """
         while self.waiting_for_response:
             time.sleep(0.01)
         self.waiting_for_response = True

@@ -141,3 +141,6 @@ cython_debug/
 
 # Idea
 .idea/
+
+#Sphinx
+docs/_build
