@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='cryptic-sdk',
+    name='cryptic_sdk',
     packages=find_packages(),
     version='1.0.0',
     description='A Cryptic Client Library for Python',

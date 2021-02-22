@@ -5,7 +5,7 @@ A [Cryptic Game](https://github.com/cryptic-game/cryptic) Client Library for Pyt
 ## Example
 
 ```python
-from cryptic-sdk import *
+from cryptic_sdk import *
 
 USERNAME = 'Username'
 PASSWORD = 'Password'
