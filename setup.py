@@ -9,5 +9,9 @@ setup(
     install_requires=[
         'websocket-client',
     ],
+    extra_requires=[
+        'sphinx',
+        'sphinx_rtd_theme'
+    ],
     url='https://github.com/Tert0/cryptic-client',
 )
