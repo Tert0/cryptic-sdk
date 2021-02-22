@@ -113,7 +113,7 @@ class Client:
         data = response['data']
 
         if 'error' in data:
-            error = data['data']
+            error = data['error']
             if error == 'invalid_input_data':
                 raise expeptions.InvalidInputData
             else:
