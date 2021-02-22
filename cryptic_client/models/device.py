@@ -12,3 +12,7 @@ class Device(object):
         self.client.ms('device', ['device', 'power'], {'device_uuid': self.uuid})
         self.on = not self.on
         return self.on
+
+    def setName(self, name: str) -> None:
+        self.client.ms('device', ['device', 'change_name'], {"device_uuid": self.uuid, "name": name})
+        self.name = name
