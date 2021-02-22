@@ -20,3 +20,12 @@ class InvalidPassword(Exception):
 
 class UsernameAlreadyExists(Exception):
     """Username already exists"""
+
+
+class MicroServiceExpeption(Exception):
+    def __init__(self, error):
+        self.msg = error
+
+
+class InvalidServerResponse(Exception):
+    """Invalid Server Response"""

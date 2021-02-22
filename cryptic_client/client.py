@@ -46,14 +46,11 @@ class Client:
         return response
 
     def login(self, username, password):
-        try:
-            token = self.request({
-                'action': 'login',
-                'name': username,
-                'password': password
-            })['token']
-        except KeyError:
-            raise Exception('Cant Login!')
+        token = self.request({
+            'action': 'login',
+            'name': username,
+            'password': password
+        })['token']
         self.logged_in = True
         return token
 
@@ -64,7 +61,7 @@ class Client:
 
     def ms(self, ms, entpoint, data):
         if not self.logged_in:
-            raise Exception('Not Logged in!')
+            raise expeptions.PermissionsDenied
         response = self.request({
             "tag": uuid(),
             "ms": ms,
@@ -72,11 +69,11 @@ class Client:
             "data": data
         })
         if 'error' in response:
-            raise Exception('MS Redirect Exeption: ' + str(response))
+            raise expeptions.MicroServiceExpeption(str(response['error']))
         if 'data' not in response:
-            raise Exception('Invalid Server Response')
+            raise expeptions.InvalidServerResponse
         data = response['data']
 
         if 'error' in data:
-            raise Exception('MS Expeption: ' + str(data))
+            raise expeptions.MicroServiceExpeption(str(data['error']))
         return data
