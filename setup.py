@@ -1,11 +1,11 @@
 from setuptools import find_packages, setup
 
-readme = file('README.md', 'r').read()
+readme = open('README.md', 'r').read()
 
 setup(
     name='cryptic_sdk',
     packages=find_packages(),
-    version='1.0.2',
+    version='1.0.4',
     description='A Cryptic SDK for Python',
     long_description=readme,
     long_description_content_type="text/markdown",
