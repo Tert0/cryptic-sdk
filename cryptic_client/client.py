@@ -77,3 +77,11 @@ class Client:
         if 'error' in data:
             raise expeptions.MicroServiceExpeption(str(data['error']))
         return data
+
+    def register(self, username, password):
+        resp = self.request({
+            "action": "register",
+            "name": username,
+            "password": password
+        })
+        return resp['token']
