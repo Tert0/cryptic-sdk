@@ -1,5 +1,5 @@
-# Cryptic Client
-A [Cryptic Game](https://github.com/cryptic-game/cryptic) Client Library for Python
+# Cryptic SDK
+A [Cryptic Game](https://github.com/cryptic-game/cryptic) SDK Library for Python
 ## Installation
 ```pip install cryptic-sdk```
 ## Example
