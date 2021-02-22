@@ -96,5 +96,5 @@ class Client:
         raw_devices = self.ms('device', ['device', 'all'], {})['devices']
         devices = []
         for device in raw_devices:
-            devices.append(Device(device))
+            devices.append(Device(device, self))
         return devices

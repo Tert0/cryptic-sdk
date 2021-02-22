@@ -1,5 +1,6 @@
 class Device(object):
-    def __init__(self, json: dict) -> None:
+    def __init__(self, json: dict, client) -> None:
+        self.client = client
         self.owner = json['owner']
         self.name = json['name']
         self.started_device = bool(json['starter_device'])
@@ -7,3 +8,7 @@ class Device(object):
         self.on = bool(json['powered_on'])
         self.dict = json
 
+    def togglePower(self) -> bool:
+        self.client.ms('device', ['device', 'power'], {'device_uuid': self.uuid})
+        self.on = not self.on
+        return self.on
