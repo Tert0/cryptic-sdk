@@ -1,8 +1,7 @@
 # Cryptic Client
 A [Cryptic Game](https://github.com/cryptic-game/cryptic) Client Library for Python
 ## Installation
--   Coming soon.
-    ```pip install cryptic-client```
+```pip install cryptic-client```
 ## Example
 ```python
 from cryptic_client import *
