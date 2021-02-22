@@ -10,14 +10,14 @@ def uuid():
 
 
 class Client:
-    def __init__(self, uri):
+    def __init__(self, uri: str):
         self.uri = uri
         self.websocket = websocket.create_connection(self.uri)
         self.waiting_for_response = False
         self.notifications: list = []
         self.logged_in = False
 
-    def request(self, data: dict):
+    def request(self, data: dict) -> dict:
         while self.waiting_for_response:
             time.sleep(0.01)
         self.waiting_for_response = True
@@ -45,7 +45,7 @@ class Client:
                 raise expeptions.UsernameAlreadyExists
         return response
 
-    def login(self, username, password):
+    def login(self, username: str, password: str):
         token = self.request({
             'action': 'login',
             'name': username,
@@ -54,18 +54,19 @@ class Client:
         self.logged_in = True
         return token
 
-    def logout(self):
-        self.request({"action": "logout"})
-        self.logged_in = False
+    def logout(self) -> bool:
+        if self.logged_in:
+            self.request({"action": "logout"})
+            self.logged_in = False
         return True
 
-    def ms(self, ms, entpoint, data):
+    def ms(self, ms: str, endpoint: list[str], data: dict) -> dict:
         if not self.logged_in:
             raise expeptions.PermissionsDenied
         response = self.request({
             "tag": uuid(),
             "ms": ms,
-            "endpoint": entpoint,
+            "endpoint": endpoint,
             "data": data
         })
         if 'error' in response:
@@ -78,7 +79,7 @@ class Client:
             raise expeptions.MicroServiceExpeption(str(data['error']))
         return data
 
-    def register(self, username, password):
+    def register(self, username: str, password: str) -> str:
         resp = self.request({
             "action": "register",
             "name": username,
