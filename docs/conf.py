@@ -14,13 +14,13 @@ import sphinx_rtd_theme
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
-sys.path.append(os.path.abspath('../cryptic_client'))
+sys.path.append(os.path.abspath('../cryptic_sdk'))
 sys.path.append(os.path.abspath('.'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'Cryptic-Client'
+project = 'Cryptic-SDK'
 copyright = '2021, Tert0'
 author = 'Tert0'
 
