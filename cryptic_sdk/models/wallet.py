@@ -2,8 +2,20 @@ from .transaction import Transaction
 
 
 class Wallet(object):
-
+    """
+    Morphcoin Wallet Object
+    """
     def __init__(self, client, wallet_id: str, wallet_key: str):
+        """
+        Parameters
+        ----------
+        client : :py:class:`cryptic_sdk.Client`
+            Client
+        wallet_id : str
+            UUID of the Wallet
+        Wallet_key : str
+            Key of the Wallet
+        """
         json = client.ms('currency', ['get'], {'source_uuid': wallet_id, 'key': wallet_key})
         self.client = client
         self.time_stamp = json['time_stamp']
@@ -23,6 +35,20 @@ class Wallet(object):
         self.dict['transactions'] = [transaction.dict for transaction in self.transactions]
 
     def pay(self, destination_uuid: str, amount: float, usage=''):
+        """
+        !!! WARING !!!
+        !!! NOT TESTED !!!
+        Pay Morphcoins to another Wallet
+
+        Parameters
+        ----------
+        destination_uuid : str
+            Wallet UUID of the Destination Wallet
+        amount : float
+            Amount of Morhcoins for this Transaction
+        usage : str, default=''
+            Usage for this Transaction
+        """
         self.client.ms('currency', ['send'], {
             'source_uuid': self.source_uuid,
             'key': self.key,

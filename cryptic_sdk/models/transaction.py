@@ -1,4 +1,7 @@
 class Transaction(object):
+    """
+    Transaction Object
+    """
     def __init__(self, client, json: dict):
         self.client = client
         self.send_amount = json['send_amount']
