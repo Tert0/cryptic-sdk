@@ -1,7 +1,8 @@
 from .device import Device
 from .wallet import Wallet
+from typing import List
 
-Devices = list[Device]
+Devices = List[Device]
 
 class User(object):
     def __init__(self, client) -> None:
