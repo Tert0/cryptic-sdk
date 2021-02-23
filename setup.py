@@ -5,7 +5,7 @@ readme = open('README.md', 'r').read()
 setup(
     name='cryptic_sdk',
     packages=find_packages(),
-    version='1.1.0',
+    version='1.1.1',
     description='A Cryptic SDK for Python',
     long_description=readme,
     long_description_content_type="text/markdown",
