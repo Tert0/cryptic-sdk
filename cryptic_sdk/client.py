@@ -4,7 +4,7 @@ import json
 from uuid import uuid4
 from . import expeptions
 from .models.user import User
-
+from typing import List
 
 def uuid():
     return str(uuid4())
@@ -97,7 +97,7 @@ class Client:
             self.logged_in = False
         return True
 
-    def ms(self, ms: str, endpoint: list[str], data: dict) -> dict:
+    def ms(self, ms: str, endpoint: List[str], data: dict) -> dict:
         if not self.logged_in:
             raise expeptions.PermissionsDenied
         response = self.request({
