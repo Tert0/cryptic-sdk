@@ -6,10 +6,17 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: ammaraskar/sphinx-action@master
+    - name: Setup Python
+      uses: actions/setup-python@v1
       with:
-        docs-folder: "docs/"
+          python-version: 3.9
+    - name: Install Sphinx
+      run: pip3 install sphinx
+    - name: Go in Docs
+      run: cd docs
+    - name: Make Docs
+      run: make html
+    
     - name: Commit documentation changes
       run: |
         git clone https://github.com/tert0/cryptic-sdk.git --branch gh-pages --single-branch gh-pages
