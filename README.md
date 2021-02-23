@@ -25,4 +25,4 @@ print(myclient.logout())
 ```
 ## Docs
 In Progess:
-[Cryptic SDK Docs](https://readthedocs.org/projects/cryptic-sdk/builds/13084379/)
+[Cryptic SDK Docs](https://cryptic-sdk.readthedocs.io/en/latest/)
