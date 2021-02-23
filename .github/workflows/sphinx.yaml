@@ -13,7 +13,7 @@ jobs:
     - name: Install Sphinx
       run: pip3 install sphinx
     - name: Go in Docs
-      run: cd docs
+      run: ls
     - name: Make Docs
       run: make html
     
