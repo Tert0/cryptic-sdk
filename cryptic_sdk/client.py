@@ -82,7 +82,22 @@ class Client:
                 raise expeptions.UsernameAlreadyExists
         return response
 
-    def login(self, username: str, password: str):
+    def login(self, username: str, password: str) -> str:
+        """
+        Logins into a User account
+
+        Parameters
+        ----------
+        username : str
+            Username of the User account
+        password : str
+            Password of the User account
+
+        Returns
+        -------
+        token : str
+            Session Token
+        """
         token = self.request({
             'action': 'login',
             'name': username,
@@ -92,12 +107,45 @@ class Client:
         return token
 
     def logout(self) -> bool:
+        """
+        Logouts the User
+    
+        Returns
+        -------
+        status : bool
+            Status
+        """
         if self.logged_in:
             self.request({"action": "logout"})
             self.logged_in = False
-        return True
+            return True
+        return False
 
     def ms(self, ms: str, endpoint: List[str], data: dict) -> dict:
+        """
+        Sends Microservice Requests
+    
+        Parameters
+        ----------
+        ms : str
+            Name of the Microservice
+        endpoint : List[str]
+            Path to the Endpoint as list
+        data : dict
+        Data for the request
+
+        Returns
+        -------
+        data : dict
+            Data of the response
+
+        Raises
+        ------
+        expeptions.InvalidInputData
+            Raises :py:class:`expeptions.InvalidInputData` when the MS throws an Invalid Input Data error
+        expeptions.MicroServiceExpeption
+            Raises :py:class:`expeptions.MicroServiceExpeption` when the MS throws an Error
+        """
         if not self.logged_in:
             raise expeptions.PermissionsDenied
         response = self.request({
@@ -121,6 +169,21 @@ class Client:
         return data
 
     def register(self, username: str, password: str) -> str:
+        """
+        Registers an new User account
+    
+        Parameters
+        ----------
+        username : str
+            Username of the new User account
+        password : str
+            Password of the new User account
+    
+        Returns
+        -------
+        token : str
+            Session Token
+        """
         resp = self.request({
             "action": "register",
             "name": username,
@@ -129,4 +192,12 @@ class Client:
         return resp['token']
 
     def getUser(self) -> User:
+        """
+        Getter of User object
+
+        Returns
+        -------
+        user : discord_sdk.user
+            User Object
+        """
         return User(self)
