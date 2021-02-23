@@ -2,6 +2,8 @@ from .client import Client
 from .expeptions import *
 from .models.user import User
 from .models.device import Device
+from  .models.wallet import Wallet
+from .models.transaction import Transaction
 
 __all__ = [
     'Client',
@@ -12,5 +14,7 @@ __all__ = [
     'InvalidPassword',
     'UsernameAlreadyExists',
     'User',
-    'Device'
+    'Device',
+    'Wallet',
+    'Transaction'
 ]
