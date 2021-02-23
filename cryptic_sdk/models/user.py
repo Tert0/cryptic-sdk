@@ -1,6 +1,7 @@
 from .device import Device
 from .wallet import Wallet
 
+Devices = list[Device]
 
 class User(object):
     def __init__(self, client) -> None:
@@ -11,7 +12,7 @@ class User(object):
         self.created = json['created']
         self.dict = json
 
-    def getDevices(self) -> list[any]:
+    def getDevices(self) -> Devices:
         raw_devices = self.client.ms('device', ['device', 'all'], {})['devices']
         devices = []
         for device in raw_devices:
