@@ -11,7 +11,7 @@ class User(object):
         self.created = json['created']
         self.dict = json
 
-    def getDevices(self) -> list[Device]:
+    def getDevices(self) -> list[any]:
         raw_devices = self.client.ms('device', ['device', 'all'], {})['devices']
         devices = []
         for device in raw_devices:
