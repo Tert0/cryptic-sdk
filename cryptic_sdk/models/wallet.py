@@ -52,7 +52,7 @@ class Wallet(object):
         self.client.ms('currency', ['send'], {
             'source_uuid': self.source_uuid,
             'key': self.key,
-            'send_amount': amount,
+            'send_amount': amount*100,
             'destination_uuid': destination_uuid,
             'usage': usage
         })
