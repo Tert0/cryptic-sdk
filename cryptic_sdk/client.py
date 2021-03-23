@@ -5,6 +5,8 @@ from uuid import uuid4
 from . import expeptions
 from .models.user import User
 from typing import List
+from .command_handler import CommandHandler
+
 
 def uuid():
     return str(uuid4())
@@ -19,6 +21,7 @@ class Client:
     uri : str
         Websocket URI of the Cryptic Backend
     """
+
     def __init__(self, uri: str):
         self.uri = uri
         self.websocket = websocket.create_connection(self.uri)

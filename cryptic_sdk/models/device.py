@@ -1,3 +1,6 @@
+
+
+
 class Device(object):
     """
     Device Object
@@ -43,3 +46,10 @@ class Device(object):
         """
         self.client.ms('device', ['device', 'change_name'], {"device_uuid": self.uuid, "name": name})
         self.name = name
+
+    def delete(self):
+        """
+        Deletes the Device
+        """
+        self.client.ms('device', ['device', 'delete'], {"device_uuid": self.uuid})
+        self = None

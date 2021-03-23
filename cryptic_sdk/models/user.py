@@ -1,13 +1,16 @@
 from .device import Device
 from .wallet import Wallet
 from typing import List
+from ..command_handler import CommandHandler
 
 Devices = List[Device]
+
 
 class User(object):
     """
     Representation of an Cryptic User Account
     """
+
     def __init__(self, client) -> None:
         """
         Parameters
@@ -68,3 +71,6 @@ class User(object):
 
         """
         return Wallet(self.client, wallet_id, wallet_key)
+
+    def getCommandHandler(self, device) -> CommandHandler:
+        return CommandHandler(device)
